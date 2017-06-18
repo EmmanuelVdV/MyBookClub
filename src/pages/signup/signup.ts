@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams, LoadingController } from 'ionic-angular';
 import { AuthService } from '../../providers/auth-service';
-import { HomePage } from '../home/home';
+import { Profile } from '../profile/profile';
 
 /**
  * Generated class for the Signup page.
@@ -27,7 +27,7 @@ export class Signup {
     console.log('ionViewDidLoad Signup');
   }
 
-	public register(): void{
+	register(): void {
  
     this.showLoader();
  
@@ -41,13 +41,13 @@ export class Signup {
     this.authService.register(this.email, this.password).then((result) => {
       this.loading.dismiss();
       console.log(result);
-      this.navCtrl.setRoot(HomePage);
+      this.navCtrl.setRoot(Profile);
     }, (err) => {
         this.loading.dismiss();
     });
   }
  
-  public showLoader(): void {
+  showLoader(): void {
     this.loading = this.loadingCtrl.create({
       content: 'Authenticating...'
     });

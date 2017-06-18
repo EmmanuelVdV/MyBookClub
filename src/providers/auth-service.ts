@@ -4,7 +4,8 @@ import { Observable } from 'rxjs/Observable';
 // import 'rxjs/add/operator/map';
 
 import { AngularFireAuth } from 'angularfire2/auth';
-// import { IUser } from './';
+// import { AngularFireDatabase } from 'angularfire2/database';
+import { iUser } from './iUser';
 import * as firebase from 'firebase/app';
 
 /*
@@ -16,11 +17,16 @@ import * as firebase from 'firebase/app';
 @Injectable()
 export class AuthService {
 
-	public currentUser: firebase.User;
+	public currentUser: iUser;
 
-  constructor(public afAuth: AngularFireAuth) {
+  constructor(public afAuth: AngularFireAuth, public db: AngularFireDatabase) {
     // console.log('Hello AuthService Provider');
-    afAuth.authState.subscribe((user: firebase.User) => this.currentUser = user);
+    afAuth.authState.subscribe((user: firebase.User) => {
+    	this.currentUser.id = user.uid;
+    	this.currentUser.email = user.email;
+    	this.currentUser.name = user.displayName;
+    	this.currentUser.picture = user.photoURL;
+    });
   }
 
   register(email: string, password: string): firebase.Promise<any> {
@@ -37,6 +43,14 @@ export class AuthService {
 
   get authenticated(): boolean {
   	return this.currentUser !== null;
+  }
+
+  get signedUser(): IUser {
+  	return this.currentUser;
+  }
+
+  updateProfile(): firebase.Promise<any> {
+  	return 
   }
 
 }

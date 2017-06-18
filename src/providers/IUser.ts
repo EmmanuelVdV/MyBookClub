@@ -1,7 +1,8 @@
-export interface IUser {
-	id: number;
+export interface iUser {
+	id: string;
+	name: string;
 	email: string;
-	password: string;
 	language: string;
 	picture: string;
+	categories: Array<{name: string, quantity: number}>;
 }

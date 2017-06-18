@@ -12,6 +12,7 @@ import { MyApp } from './app.component';
 import { HomePage } from '../pages/home/home';
 import { Login } from '../pages/login/login';
 import { Signup } from '../pages/signup/signup';
+import { Profile } from '../pages/profile/profile';
 
 import { AuthService } from '../providers/auth-service';
 
@@ -34,7 +35,8 @@ export const firebaseConfig = {
     MyApp,
     HomePage,
     Login,
-    Signup
+    Signup,
+    Profile
   ],
   imports: [
     BrowserModule,
@@ -48,7 +50,8 @@ export const firebaseConfig = {
     MyApp,
     HomePage,
     Login,
-    Signup
+    Signup,
+    Profile
   ],
   providers: [
     StatusBar,

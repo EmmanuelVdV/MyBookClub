@@ -27,7 +27,7 @@ export class Login {
 		console.log('ionViewDidLoad Login');
 	}
 
-	public login(): void {
+	login(): void {
 		this.showLoader();
 
 		this.authService.login(this.email, this.password).then((result) => {
@@ -40,15 +40,11 @@ export class Login {
 		});
 	}
 
-	public launchSignup(): void {
+	launchSignup(): void {
 		this.navCtrl.push(Signup);
 	}
 
-	/*	private onLoginSuccess() {
-			console.log(this.authService.currentUser);
-		} */
-
-	public showLoader(): void {
+	showLoader(): void {
 
 		this.loading = this.loadingCtrl.create({
 			content: 'Authenticating...'
