@@ -1,7 +1,12 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
 
+import { AngularFireDatabase, FirebaseObjectObservable } from 'angularfire2/database';
+
 import { AuthService } from '../../providers/auth-service';
+import * as firebase from 'firebase/app';
+// import { iUser } from '../../providers/iUser';
+
 /**
  * Generated class for the Profile page.
  *
@@ -13,16 +18,24 @@ import { AuthService } from '../../providers/auth-service';
 	selector: 'page-profile',
 	templateUrl: 'profile.html',
 })
-export class Profile {
+export class ProfilePage {
 
-	public user: any;
+	// public user: iUser;
+	public userRef: firebase.User;
 
 
-	constructor(public navCtrl: NavController, public navParams: NavParams, private authService: AuthService) {
+	constructor(public navCtrl: NavController, public navParams: NavParams, public db: AngularFireDatabase, public authService: AuthService) {
+		// this.user = navParams.data.userInfo;
+		this.userRef = authService.signedUser;
+		
 	}
 
 	ionViewDidLoad() {
 		console.log('ionViewDidLoad Profile');
+	}
+
+	updateProfile() {
+		// call à fonction de authService pour update
 	}
 
 }

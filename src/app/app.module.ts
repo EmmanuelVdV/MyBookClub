@@ -10,11 +10,14 @@ import { AngularFireAuthModule } from 'angularfire2/auth';
 
 import { MyApp } from './app.component';
 import { HomePage } from '../pages/home/home';
-import { Login } from '../pages/login/login';
-import { Signup } from '../pages/signup/signup';
-import { Profile } from '../pages/profile/profile';
+import { LoginPage } from '../pages/login/login';
+import { SignupPage } from '../pages/signup/signup';
+import { ProfilePage } from '../pages/profile/profile';
+import { ReviewPage } from '../pages/review/review';
 
 import { AuthService } from '../providers/auth-service';
+
+import { StarsComponent} from '../components/stars-component/stars-component';
 
 export const firebaseConfig = {
     apiKey: "AIzaSyDAJp2P5ezPoWy3TID19KxsOiHcAj4UZqI",
@@ -34,9 +37,11 @@ export const firebaseConfig = {
   declarations: [
     MyApp,
     HomePage,
-    Login,
-    Signup,
-    Profile
+    LoginPage,
+    SignupPage,
+    ProfilePage,
+    ReviewPage,
+    StarsComponent
   ],
   imports: [
     BrowserModule,
@@ -49,9 +54,10 @@ export const firebaseConfig = {
   entryComponents: [
     MyApp,
     HomePage,
-    Login,
-    Signup,
-    Profile
+    LoginPage,
+    SignupPage,
+    ProfilePage,
+    ReviewPage
   ],
   providers: [
     StatusBar,

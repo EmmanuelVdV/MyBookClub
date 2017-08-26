@@ -1,8 +1,8 @@
 export interface iUser {
 	id: string;
-	name: string;
+	displayName: string;
 	email: string;
 	language: string;
-	picture: string;
-	categories: Array<{name: string, quantity: number}>;
+	photoURL: string;
+	categories: Array<{id: string, name: string, quantity: number}>;
 }

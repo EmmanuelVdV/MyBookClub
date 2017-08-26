@@ -1,0 +1,22 @@
+Ecran Home
+- StarComponents ne présente que 4 étoiles
+- Update d'une review "plante" (propriétés "undefined")
+- Retirer bouton de "déconnexion" et remplacer par bouton "Profil"
+- Retirer bouton "View" de l'item sliding => remplacer par "pushDetail"
+
+Ecran Review
+- Gérer le grisage / dégrisage bouton "Save"
+- Ajouter règles de validation d'une "Review" sur bouton "Save"
+- Ajouter bouton "Cancel" avec gestion d'un message de confirmation si changements détectés
+
+Ecran Login
+- Conserver l'utilisateur loggué dans localStorage
+
+Ecran Profil
+- Gérer update utilisateur + déconnexion
+
+
+A plus long terme
+- Ajout "Menu" avec Profil, book club et visi autres membres
+- Gestion de catégories avec groupage par catégorie dans Home
+- Recherche de livre sur Google depuis création Review + scan code barre

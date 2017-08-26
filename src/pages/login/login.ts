@@ -2,7 +2,7 @@ import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams, LoadingController } from 'ionic-angular';
 import { AuthService } from '../../providers/auth-service';
 import { HomePage } from '../home/home';
-import { Signup } from '../signup/signup';
+import { SignupPage } from '../signup/signup';
 
 /**
  * Generated class for the Login page.
@@ -15,7 +15,7 @@ import { Signup } from '../signup/signup';
 	selector: 'page-login',
 	templateUrl: 'login.html',
 })
-export class Login {
+export class LoginPage {
 
 	public email: string;
 	public password: string;
@@ -41,7 +41,7 @@ export class Login {
 	}
 
 	launchSignup(): void {
-		this.navCtrl.push(Signup);
+		this.navCtrl.push(SignupPage);
 	}
 
 	showLoader(): void {
