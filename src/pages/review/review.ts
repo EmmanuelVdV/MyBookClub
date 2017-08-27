@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { IonicPage, ViewController, NavParams } from 'ionic-angular';
+import { IonicPage, ViewController, NavParams, AlertController } from 'ionic-angular';
 
 import { iReview } from '../../providers/iReview';
 
@@ -18,11 +18,16 @@ export class ReviewPage {
 
 	review: iReview;
 
-  constructor(public viewCtrl: ViewController, public navParams: NavParams) {
-  	if (navParams.get('review'))
-  		this.review = navParams.get('review');
-  	else
-  		this.review = <iReview>{};
+  isRemoveHidden: boolean = true; // default to "Remove" button hidden
+
+  constructor(public viewCtrl: ViewController, public navParams: NavParams, public alertCtrl: AlertController) {
+    if (navParams.get('review')) {
+      this.review = navParams.get('review');
+      this.isRemoveHidden = false;
+    }
+    else {
+      this.review = <iReview>{};
+    }
   }
 
   ionViewDidLoad() {
@@ -30,11 +35,49 @@ export class ReviewPage {
   }
 
   save() {
-  	this.viewCtrl.dismiss(this.review);
+    let returnData = {
+      operation: 'save',
+      data: null
+    };
+
+    returnData.data = this.review;
+    console.log(returnData); // debug
+
+    this.viewCtrl.dismiss(returnData);
   }
 
   cancel() {
-  	this.viewCtrl.dismiss();
+    let returnData = {
+      operation: 'cancel',
+      data: null
+    };
+
+    this.viewCtrl.dismiss(returnData);
+  }
+
+  remove() {
+    let returnData = {
+      operation: 'delete',
+      data: null
+    };
+
+    let prompt = this.alertCtrl.create({
+      title: 'Delete review',
+      message: 'Are you sure you want to delete this review?',
+      buttons: [
+        {
+          text: 'Cancel'
+        },
+        {
+          text: 'OK',
+          handler: () => {
+            this.viewCtrl.dismiss(returnData);
+          }
+        }]
+    });
+
+    prompt.present();
+
   }
 
 }

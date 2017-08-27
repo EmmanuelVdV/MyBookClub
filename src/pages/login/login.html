@@ -16,29 +16,33 @@
 <ion-content padding>
     <ion-row class="login-form">
         <ion-col>
-            <ion-list inset>
+            <ion-list no-lines>
  
               <ion-item>
-                <ion-label><ion-icon name="person"></ion-icon></ion-label>
-                <ion-input [(ngModel)]="email" placeholder="email" type="text"></ion-input>
+                <ion-label><ion-icon name="mail"></ion-icon></ion-label>
+                <ion-input [(ngModel)]="email" placeholder="Email" type="text"></ion-input>
               </ion-item>
+
+              <ion-item><p></p></ion-item>
  
               <ion-item>
                 <ion-label><ion-icon name="lock"></ion-icon></ion-label>
-                <ion-input [(ngModel)]="password" placeholder="password" type="password"></ion-input>
+                <ion-input [(ngModel)]="password" placeholder="Password" type="password"></ion-input>
               </ion-item>
  
             </ion-list>
  
-            <button ion-button full (click)="login()" class="login-button">Login</button>
+            <button ion-button block (click)="login()" class="login-button">Login</button>
  
         </ion-col>
     </ion-row>
  
     <ion-row>
+        <ion-col col-3></ion-col>
         <ion-col>
-            <button ion-button (click)="launchSignup()" class="create-account">Create an Account</button>
+            <button ion-button block clear (click)="launchSignup()" class="create-account">Create an account</button>
         </ion-col>
+        <ion-col col-3></ion-col>
     </ion-row>
 
 </ion-content>

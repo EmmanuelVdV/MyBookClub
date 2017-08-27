@@ -8,36 +8,46 @@
   <ion-navbar>
     <ion-title>Review</ion-title>
   </ion-navbar>
-</ion-header>
 
-<ion-content padding>
-  <ion-row class="review-form">
-    <ion-col>
-      <ion-list inset>
-        <ion-item>
-          <ion-label>Book title</ion-label>
-          <ion-input [(ngModel)]="review.bookTitle" placeholder="Book title" type="text"></ion-input>
-        </ion-item>
-        <ion-item>
-          <ion-label>Author</ion-label>
-          <ion-input [(ngModel)]="review.bookAuthor" placeholder="Author" type="text"></ion-input>
-        </ion-item>
-        <ion-item>
-          <ion-label>Description</ion-label>
-          <ion-textarea [(ngModel)]="review.bookDescription" placeholder="Description" type="text"></ion-textarea>
-        </ion-item>
-        <ion-item>
-          <ion-label>Comment</ion-label>
-          <ion-textarea [(ngModel)]="review.reviewComment" placeholder="Comment" type="text"></ion-textarea>
-        </ion-item>
-        <ion-item>
-          <ion-range min="0" max="5" pin="true" [(ngModel)]="review.reviewRating">
-            <ion-icon range-left name="sad"></ion-icon>
-            <ion-icon range-right name="happy"></ion-icon>
-          </ion-range>
-        </ion-item>
-      </ion-list>
-      <button ion-button full (click)="save()" class="save-button">Save</button>
-    </ion-col>
-  </ion-row>
+</ion-header>
+<ion-content>
+  <ion-list no-lines>
+    <form class="review-form">
+      <ion-item>
+        <ion-label floating>Book title</ion-label>
+        <ion-input [(ngModel)]="review.bookTitle" name="bookTitle" type="text"></ion-input>
+      </ion-item>
+      <ion-item>
+        <ion-label floating>Book author</ion-label>
+        <ion-input [(ngModel)]="review.bookAuthor" name="bookAuthor" type="text"></ion-input>
+      </ion-item>
+      <ion-item>
+        <ion-label floating>Description</ion-label>
+        <ion-textarea [(ngModel)]="review.bookDescription" maxlength="256" name="bookDescription" type="text"></ion-textarea>
+      </ion-item>
+      <ion-item>
+        <ion-label floating>Comment</ion-label>
+        <ion-textarea [(ngModel)]="review.reviewComment" maxlength="256" name="reviewComment" type="text"></ion-textarea>
+      </ion-item>
+      <ion-item>
+        <ion-range min="0" max="5" pin="true" [(ngModel)]="review.reviewRating" name="reviewRating">
+          <ion-icon range-left color="danger" name="sad"></ion-icon>
+          <ion-icon range-right color="secondary" name="happy"></ion-icon>
+        </ion-range>
+      </ion-item>
+    </form>
+  </ion-list>
+  <ion-grid>
+    <ion-row>
+      <ion-col>
+        <button ion-button block (click)="save()" class="save-button">Save</button>
+      </ion-col>
+      <ion-col>
+        <button ion-button block (click)="cancel()" class="cancel-button">Cancel</button>
+      </ion-col>
+    </ion-row>
+    <ion-row>
+      <button ion-button block color="danger" (click)="remove()" class="remove-button" [hidden]="isRemoveHidden">Remove</button>
+    </ion-row>
+  </ion-grid>
 </ion-content>

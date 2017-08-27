@@ -1,16 +1,26 @@
 Ecran Home
-- StarComponents ne présente que 4 étoiles
 - Update d'une review "plante" (propriétés "undefined")
-- Retirer bouton de "déconnexion" et remplacer par bouton "Profil"
-- Retirer bouton "View" de l'item sliding => remplacer par "pushDetail"
+- Retirer bouton de "déconnexion" et remplacer par bouton "Profil" => partiellement fait
+- VirtualScroll => problème sur Ionic2 avec virtualScroll et virtuelHeader sur données asynchrones (Mobile App Dev w/ Ionic2 page 127) => upgrade to ionic3 ?
+- OrderBy BookTitle => Partiellement fait. Améliorer le sorting upper/lowercase
+- Search ===>>>>> A REVOIR COMPLETEMENT CAR "equalTo" FILTRE SUR VALEUR EXACTE !!! PAS POSSIBLE APPAREMMENT DE FILTRER "LIKE". CHANGER orderByKey ou Value + startAt et endAt ?
+
+===> nécessité de gérer une liste "dupliquée" depuis la liste "Observable" de Firebase pour gérer orderby lowercase, virtualScroll, Search... ?
 
 Ecran Review
 - Gérer le grisage / dégrisage bouton "Save"
 - Ajouter règles de validation d'une "Review" sur bouton "Save"
 - Ajouter bouton "Cancel" avec gestion d'un message de confirmation si changements détectés
+- Ajouter mois/année de lecture
 
 Ecran Login
 - Conserver l'utilisateur loggué dans localStorage
+- Contrôler la création d'un nouvel utilisateur
+- Enregistrer le nom utilisateur lors de la création d'un nouveau compte
+- Revoir la gestion d'erreur
+
+Ecran Signup
+- Gérer la validation du formulaire et les erreurs
 
 Ecran Profil
 - Gérer update utilisateur + déconnexion
@@ -20,3 +30,12 @@ A plus long terme
 - Ajout "Menu" avec Profil, book club et visi autres membres
 - Gestion de catégories avec groupage par catégorie dans Home
 - Recherche de livre sur Google depuis création Review + scan code barre
+
+
+Comptes de test :
+- sophie@mail.com
+- emmanuelvdev@gmail.com
+lalala
+
+Validation de formulaire :
+https://www.joshmorony.com/advanced-forms-validation-in-ionic-2/

@@ -35,8 +35,8 @@ export class SignupPage {
     let details = {
         email: this.email,
         password: this.password,
-        username: this.username,
-        language: this.language
+        username: this.username /*,
+        language: this.language */
     };
  
     this.authService.register(this.email, this.password).then((result) => {
