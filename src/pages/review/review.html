@@ -8,29 +8,38 @@
   <ion-navbar>
     <ion-title>Review</ion-title>
   </ion-navbar>
-
 </ion-header>
 <ion-content>
   <ion-list no-lines>
-    <form class="review-form">
+    <form [formGroup]="reviewForm" class="review-form">
       <ion-item>
         <ion-label floating>Book title</ion-label>
-        <ion-input [(ngModel)]="review.bookTitle" name="bookTitle" type="text"></ion-input>
+        <ion-input [(ngModel)]="review.bookTitle" formControlName="bookTitle" type="text" [class.invalid]="!reviewForm.controls.bookTitle.valid && (reviewForm.controls.bookTitle.dirty || submitAttempt)"></ion-input>
+      </ion-item>
+      <ion-item *ngIf="!reviewForm.controls.bookTitle.valid && (reviewForm.controls.bookTitle.dirty || submitAttempt)">
+        <p>Required field - max 256 characters</p>
       </ion-item>
       <ion-item>
         <ion-label floating>Book author</ion-label>
-        <ion-input [(ngModel)]="review.bookAuthor" name="bookAuthor" type="text"></ion-input>
+        <ion-input [(ngModel)]="review.bookAuthor" formControlName="bookAuthor" type="text" [class.invalid]="!reviewForm.controls.bookAuthor.valid && (reviewForm.controls.bookAuthor.dirty || submitAttempt)"></ion-input>
+      </ion-item>
+      <ion-item *ngIf="!reviewForm.controls.bookAuthor.valid && (reviewForm.controls.bookAuthor.dirty || submitAttempt)">
+        <p>Required field - max 256 characters</p>
       </ion-item>
       <ion-item>
         <ion-label floating>Description</ion-label>
-        <ion-textarea [(ngModel)]="review.bookDescription" maxlength="256" name="bookDescription" type="text"></ion-textarea>
+        <ion-textarea [(ngModel)]="review.bookDescription" maxlength="256" formControlName="bookDescription" type="text"></ion-textarea>
       </ion-item>
       <ion-item>
         <ion-label floating>Comment</ion-label>
-        <ion-textarea [(ngModel)]="review.reviewComment" maxlength="256" name="reviewComment" type="text"></ion-textarea>
+        <ion-textarea [(ngModel)]="review.reviewComment" maxlength="256" formControlName="reviewComment" type="text"></ion-textarea>
       </ion-item>
       <ion-item>
-        <ion-range min="0" max="5" pin="true" [(ngModel)]="review.reviewRating" name="reviewRating">
+        <ion-label>Date</ion-label>
+        <ion-datetime displayFormat="MMMM YYYY" min="2000" pickerFormat="MMMM YYYY" [(ngModel)]="review.reviewDate" formControlName="reviewDate"></ion-datetime>
+      </ion-item>
+      <ion-item>
+        <ion-range min="0" max="5" pin="true" [(ngModel)]="review.reviewRating" formControlName="reviewRating">
           <ion-icon range-left color="danger" name="sad"></ion-icon>
           <ion-icon range-right color="secondary" name="happy"></ion-icon>
         </ion-range>

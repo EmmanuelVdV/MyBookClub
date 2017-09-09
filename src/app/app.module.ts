@@ -16,6 +16,7 @@ import { ProfilePage } from '../pages/profile/profile';
 import { ReviewPage } from '../pages/review/review';
 
 import { AuthService } from '../providers/auth-service';
+import { ReviewData } from '../providers/ReviewData';
 
 import { StarsComponent} from '../components/stars-component/stars-component';
 
@@ -63,7 +64,8 @@ export const firebaseConfig = {
     StatusBar,
     SplashScreen,
     {provide: ErrorHandler, useClass: IonicErrorHandler},
-    AuthService
+    AuthService,
+    ReviewData
   ]
 })
 export class AppModule {}

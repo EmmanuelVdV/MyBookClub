@@ -7,4 +7,5 @@ export interface iReview {
 	//reviewCategory?: string;
 	reviewComment?: string;
 	reviewRating?: number;
+	reviewDate?: string;
 }

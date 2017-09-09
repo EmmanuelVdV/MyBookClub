@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { IonicPage, ViewController, NavParams, AlertController } from 'ionic-angular';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 
 import { iReview } from '../../providers/iReview';
 
@@ -18,16 +19,31 @@ export class ReviewPage {
 
 	review: iReview;
 
+  reviewForm: FormGroup; // to implement from validation when saving / updating a review
+  submitAttempt: boolean = false; // form not submitted yet
+
   isRemoveHidden: boolean = true; // default to "Remove" button hidden
 
-  constructor(public viewCtrl: ViewController, public navParams: NavParams, public alertCtrl: AlertController) {
-    if (navParams.get('review')) {
+  constructor(public viewCtrl: ViewController, public navParams: NavParams, public alertCtrl: AlertController, public formBuilder: FormBuilder) {
+
+    this.reviewForm = formBuilder.group({
+      bookTitle: ['', Validators.compose([Validators.maxLength(256), Validators.required])],
+      bookAuthor: ['', Validators.compose([Validators.maxLength(256), Validators.required])],
+      bookDescription: [''],
+      reviewComment: [''],
+      reviewDate: [''],
+      reviewRating: ['']
+    });
+
+    if (navParams.get('review')) { // updating an existing review
       this.review = navParams.get('review');
       this.isRemoveHidden = false;
     }
-    else {
+    else { // creating a new review
       this.review = <iReview>{};
+      this.review.reviewDate = (new Date()).toISOString();
     }
+
   }
 
   ionViewDidLoad() {
@@ -35,15 +51,19 @@ export class ReviewPage {
   }
 
   save() {
-    let returnData = {
-      operation: 'save',
-      data: null
-    };
+    this.submitAttempt = true;
 
-    returnData.data = this.review;
-    console.log(returnData); // debug
+    if (this.reviewForm.valid) {
+      let returnData = {
+        operation: 'save',
+        data: null
+      };
 
-    this.viewCtrl.dismiss(returnData);
+      returnData.data = this.review;
+      console.log(returnData); // debug
+
+      this.viewCtrl.dismiss(returnData);
+    }
   }
 
   cancel() {

@@ -3,12 +3,16 @@
     <ion-title>
       MyBookClub reviews
     </ion-title>
-    <ion-buttons start>
+    <!-- <ion-buttons start>
       <button ion-button icon-only (click)="logout()">
         <ion-icon name="md-power"></ion-icon>
       </button>
-    </ion-buttons>
+    </ion-buttons> -->
   </ion-navbar>
+  <ion-toolbar>
+    <ion-searchbar [(ngModel)]="searchQuery" (ionInput)="getReviews($event)" (ionClear)="resetList($event)">
+    </ion-searchbar>
+  </ion-toolbar>
 </ion-header>
 <ion-content>
   <ion-fab right bottom>
@@ -17,31 +21,19 @@
     </button>
   </ion-fab>
   <ion-list>
-    <ion-item-sliding *ngFor="let review of reviews | async" #slidingItem>
-      <ion-item>
-        <ion-grid>
-          <ion-row align-items-center>
-            <ion-col col-10>
-              <h3>{{review.bookTitle}}</h3>
-              <p>{{review.bookAuthor}}</p>
-            </ion-col>
-            <!-- ion-avatar item-right>{{review.review}}</ion-avatar -->
-            <ion-col col-2 align-self-center>
-              <stars-component [rating]="review.reviewRating"></stars-component>
-            </ion-col>
-          </ion-row>
-        </ion-grid>
-      </ion-item>
-      <ion-item-options>
-        <button ion-button (click)="viewReview(review, slidingItem)">
-          <ion-icon name="md-eye"></ion-icon>
-          View
-        </button>
-        <button ion-button color="danger" (click)="deleteReview(review, slidingItem)">
-          <ion-icon name="md-trash"></ion-icon>
-          Delete
-        </button>
-      </ion-item-options>
-    </ion-item-sliding>
+    <ion-item *ngFor="let review of reviews | async" (click)="viewReview(review)" detail-push>
+      <ion-grid>
+        <ion-row align-items-center>
+          <ion-col col-9>
+            <h3>{{review.bookTitle}}</h3>
+            <p>{{review.bookAuthor}}</p>
+          </ion-col>
+          <!-- ion-avatar item-right>{{review.bookPicture}}</ion-avatar -->
+          <ion-col col-3 align-self-center>
+            <stars-component [rating]="review.reviewRating"></stars-component>
+          </ion-col>
+        </ion-row>
+      </ion-grid>
+    </ion-item>
   </ion-list>
 </ion-content>

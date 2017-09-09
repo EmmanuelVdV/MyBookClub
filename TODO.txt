@@ -12,6 +12,7 @@ Ecran Review
 - Ajouter règles de validation d'une "Review" sur bouton "Save"
 - Ajouter bouton "Cancel" avec gestion d'un message de confirmation si changements détectés
 - Ajouter mois/année de lecture
+- Supprimer "review-working.html"
 
 Ecran Login
 - Conserver l'utilisateur loggué dans localStorage
@@ -39,3 +40,6 @@ lalala
 
 Validation de formulaire :
 https://www.joshmorony.com/advanced-forms-validation-in-ionic-2/
+
+Sorting d'array :
+https://stackoverflow.com/questions/1129216/sort-array-of-objects-by-string-property-value-in-javascript
