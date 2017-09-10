@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
-import { NavController, ModalController, ItemSliding } from 'ionic-angular';
+import { NavController, ModalController } from 'ionic-angular';
 
-import { AngularFireDatabase, FirebaseListObservable } from 'angularfire2/database';
+import { AngularFireDatabase } from 'angularfire2/database';
 // import { Subject } from 'rxjs/Subject';
 
 import { iReview } from '../../providers/iReview';
@@ -19,50 +19,42 @@ import { ReviewPage } from '../review/review';
 })
 export class HomePage {
 
-  //reviews: FirebaseListObservable<any[]>;
   reviews: Array<iReview> = [];
   searchQuery: string = '';
 
   sortParam1: string = 'bookTitle'; // default to sorting by bookTitle
   sortAsc1: number = 1; // default to sorting ascending
   sortParam2: string = 'bookAuthor'; // default to sorting by bookAuthor
-  sortAsc2:  number = 1; // default to sorting ascending
-  //user: iUser;
+  sortAsc2: number = 1; // default to sorting ascending
 
-  constructor(public navCtrl: NavController, public modalCtrl: ModalController, public db: AngularFireDatabase, public authService: AuthService, public ReviewData: ReviewData) {
-    // this.user = authService.currentUser;
-    /* this.searchSubject = new Subject();
-    this.reviews = db.list('/reviews/' + authService.signedUser.uid, {
-      query: {
-      orderByChild: 'bookTitle',
-      startAt: this.searchSubject,
-      endAt: this.searchSubject // A REVOIR COMPLETEMENT
-      }
-    }); */
+  constructor(public navCtrl: NavController, public modalCtrl: ModalController, public authService: AuthService, public ReviewData: ReviewData) {
 
-    ReviewData.loadReviews().then(data => {
-      this.reviews = data; // EN FAIT ON PASSE UN OBSERVABLE !!! D'où les mises à jour automatiques !
-      console.log(this.reviews);
+    this.ReviewData.getReviews().then(data => {
+      this.reviews = data;
       this.sortReviewList();
-    }); // ajouter loader "loading data" + gestion erreur
+    }); // ajouter loader "loading data" + gestion erreur */
 
   }
 
   viewReview(review: iReview) {
     console.log(review);
-    // let index = this.reviews.indexOf(review);
+    let index = this.reviews.indexOf(review);
     let reviewModal = this.modalCtrl.create(ReviewPage, { review: review });
     reviewModal.onDidDismiss(returnData => {
       if (returnData.operation == "save") { // here it's an update
         this.ReviewData.updateReview(returnData.data).then(_ => {
-          // if (index > -1) {this.reviews[index]=review;} // replaced in local list if correctly saved on DB
+          if (index > -1) {
+            this.reviews[index]=review;
+            this.sortReviewList();} // replaced in local list if correctly saved on DB
         }).catch(err => {
           console.log(err); // MUST add error popup
         });
       }
       else if (returnData.operation == "delete") {
         this.ReviewData.removeReview(review).then(_ => {
-          // if (index > -1) {this.reviews.splice(index, 1);} // deleted from local list if correctly removed from DB
+          if (index > -1) {
+            this.reviews.splice(index, 1);
+            this.sortReviewList();} // deleted from local list if correctly removed from DB
         }).catch(err => {
           console.log(err); // MUST add error popup
         });
@@ -76,8 +68,13 @@ export class HomePage {
     let reviewModal = this.modalCtrl.create(ReviewPage);
     reviewModal.onDidDismiss(returnData => {
       if (returnData.operation == "save") {
-        this.ReviewData.pushReview(returnData.data).then(_ => {
-          // this.reviews.push(returnData.data); // added to local list if correctly saved on DB
+        this.ReviewData.pushReview(returnData.data).then(p => {
+          // console.log(p);
+          let newReview : iReview;
+          newReview = returnData.data as iReview;
+          newReview.$key = p.key;
+          this.reviews.push(newReview); // added to local list if correctly saved on DB
+          this.sortReviewList();
         }).catch(err => {
           console.log(err);
         });
@@ -89,11 +86,13 @@ export class HomePage {
 
   sortReviewList() {
 
+    // console.log("sorting on " + this.sortParam1 + " " + this.sortParam2);
+
     this.reviews.sort((a, b) => {
-      if(a[this.sortParam1] < b[this.sortParam1]) return (-1*this.sortAsc1);
-      if(a[this.sortParam1] > b[this.sortParam1]) return (1*this.sortAsc1);
-      if(a[this.sortParam2] < b[this.sortParam2]) return (-1*this.sortAsc2);
-      if(a[this.sortParam2] > b[this.sortParam2]) return (1*this.sortAsc2);
+      if (a[this.sortParam1].toLowerCase() < b[this.sortParam1].toLowerCase()) return (-1 * this.sortAsc1);
+      if (a[this.sortParam1].toLowerCase() > b[this.sortParam1].toLowerCase()) return (1 * this.sortAsc1);
+      if (a[this.sortParam2].toLowerCase() < b[this.sortParam2].toLowerCase()) return (-1 * this.sortAsc2);
+      if (a[this.sortParam2].toLowerCase() > b[this.sortParam2].toLowerCase()) return (1 * this.sortAsc2);
       return 0;
     });
 

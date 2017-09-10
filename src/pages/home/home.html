@@ -21,7 +21,7 @@
     </button>
   </ion-fab>
   <ion-list>
-    <ion-item *ngFor="let review of reviews | async" (click)="viewReview(review)" detail-push>
+    <ion-item *ngFor="let review of reviews" (click)="viewReview(review)" detail-push>
       <ion-grid>
         <ion-row align-items-center>
           <ion-col col-9>

@@ -1,17 +1,13 @@
 Ecran Home
-- Update d'une review "plante" (propriétés "undefined")
 - Retirer bouton de "déconnexion" et remplacer par bouton "Profil" => partiellement fait
 - VirtualScroll => problème sur Ionic2 avec virtualScroll et virtuelHeader sur données asynchrones (Mobile App Dev w/ Ionic2 page 127) => upgrade to ionic3 ?
-- OrderBy BookTitle => Partiellement fait. Améliorer le sorting upper/lowercase
-- Search ===>>>>> A REVOIR COMPLETEMENT CAR "equalTo" FILTRE SUR VALEUR EXACTE !!! PAS POSSIBLE APPAREMMENT DE FILTRER "LIKE". CHANGER orderByKey ou Value + startAt et endAt ?
+- OrderBy : ajouter des boutons pour order par autre propriété et choisir asc/desc
+- Search 
 
-===> nécessité de gérer une liste "dupliquée" depuis la liste "Observable" de Firebase pour gérer orderby lowercase, virtualScroll, Search... ?
 
 Ecran Review
 - Gérer le grisage / dégrisage bouton "Save"
-- Ajouter règles de validation d'une "Review" sur bouton "Save"
 - Ajouter bouton "Cancel" avec gestion d'un message de confirmation si changements détectés
-- Ajouter mois/année de lecture
 - Supprimer "review-working.html"
 
 Ecran Login
@@ -40,6 +36,3 @@ lalala
 
 Validation de formulaire :
 https://www.joshmorony.com/advanced-forms-validation-in-ionic-2/
-
-Sorting d'array :
-https://stackoverflow.com/questions/1129216/sort-array-of-objects-by-string-property-value-in-javascript

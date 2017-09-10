@@ -1,4 +1,4 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, Input, OnChanges, SimpleChanges } from '@angular/core';
 
 /*
   Generated class for the StarsComponent component.
@@ -10,13 +10,14 @@ import { Component, Input, OnInit } from '@angular/core';
   selector: 'stars-component',
   templateUrl: 'stars-component.html'
 })
-export class StarsComponent implements OnInit {
+export class StarsComponent implements OnChanges {
 
   @Input() count: number = 5; // defaults to count max to 5 stars
   @Input() rating: number =0;
-  stars: string[] = [];
+  stars: string[];
 
-  ngOnInit() {
+  ngOnChanges(changes: SimpleChanges) {
+    this.stars = [];
     for (let i = 1; i <= this.count; i++) {
       if(i <= this.rating) {this.stars.push("md-star");}
       else {this.stars.push("md-star-outline");} 

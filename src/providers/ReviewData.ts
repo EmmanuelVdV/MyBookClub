@@ -8,17 +8,33 @@ import { iReview } from './iReview';
 export class ReviewData {
 
 	reviews: FirebaseListObservable<any[]>;
+	reviewsArray: Array<iReview> = null;
 
 	constructor(public db: AngularFireDatabase, public authService: AuthService) { }
 
+
 	loadReviews(): Promise<any> {
+
 		return new Promise(resolve => {
-			this.reviews = this.db.list('/reviews/' + this.authService.signedUser.uid);
-			resolve(this.reviews);
+			this.reviews = this.db.list('/reviews/' + this.authService.signedUser.uid, { preserveSnapshot: true });
+			this.reviews.subscribe(items => {
+
+				this.reviewsArray = [];
+
+				items.forEach(item => {
+					let r: iReview;
+					r = item.val() as iReview;
+					r.$key = item.key;
+					this.reviewsArray.push(r);
+				});
+
+				resolve(this.reviewsArray);
+			});
+
 		});
 	}
 
-	getReviews() { // nécessaire ?
+	getReviews(): Promise<any> { // nécessaire ?
 		return this.loadReviews().then(data => {
 			return data;
 		});
@@ -33,6 +49,7 @@ export class ReviewData {
 
 	updateReview(returnReview: any) {
 		const correctedReview = this.correctReview(returnReview);
+
 		const p = this.reviews.update(correctedReview.$key, {
 			bookTitle: correctedReview.bookTitle,
 			bookAuthor: correctedReview.bookAuthor,
