@@ -37,5 +37,8 @@ lalala
 Validation de formulaire :
 https://www.joshmorony.com/advanced-forms-validation-in-ionic-2/
 
+CSS selon taille écran :
+https://stackoverflow.com/questions/6370690/media-queries-how-to-target-desktop-tablet-and-mobile
+
 Déploiement sur iOS
 https://www.joshmorony.com/building-ionic-2-applications-for-ios-without-a-mac/
