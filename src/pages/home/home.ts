@@ -39,7 +39,12 @@ export class HomePage {
   viewReview(review: iReview) {
     console.log(review);
     let index = this.reviews.indexOf(review);
+    
+    let reviewBeforeChange : iReview;
+    reviewBeforeChange = Object.assign({}, review); // clone review before any change in case of cancellation
+    
     let reviewModal = this.modalCtrl.create(ReviewPage, { review: review });
+    
     reviewModal.onDidDismiss(returnData => {
       if (returnData.operation == "save") { // here it's an update
         this.ReviewData.updateReview(returnData.data).then(_ => {
@@ -59,6 +64,10 @@ export class HomePage {
           console.log(err); // MUST add error popup
         });
       }
+      else if (returnData.operation == "cancel") {
+        this.reviews[index] = reviewBeforeChange;
+        this.sortReviewList();
+      }
     });
 
     reviewModal.present();
@@ -70,9 +79,11 @@ export class HomePage {
       if (returnData.operation == "save") {
         this.ReviewData.pushReview(returnData.data).then(p => {
           // console.log(p);
+
           let newReview : iReview;
           newReview = returnData.data as iReview;
           newReview.$key = p.key;
+          
           this.reviews.push(newReview); // added to local list if correctly saved on DB
           this.sortReviewList();
         }).catch(err => {

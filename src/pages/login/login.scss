@@ -1,6 +1,25 @@
 .ios,
 .md {
   page-login {
+
+    ion-content {
+      background-image: url('../assets/img/1.jpg');
+      background-repeat: no-repeat;
+      background-size: cover;
+      background-color: transparent;
+      background-position: center;
+    }
+
+    ion-col,
+    ion-list,
+    ion-item {
+      background-color: transparent;
+    }
+
+    ion-label {
+    margin-left: 10px;
+    }
+    
     ion-input,
     ion-textarea {
       background-color: #f2f2f2;
