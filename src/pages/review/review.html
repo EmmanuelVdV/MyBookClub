@@ -35,13 +35,13 @@
         <ion-textarea [(ngModel)]="review.reviewComment" maxlength="256" formControlName="reviewComment" type="text"></ion-textarea>
       </ion-item>
       <ion-item>
-        <ion-label>Date</ion-label>
+        <ion-label floating>Date</ion-label>
         <ion-datetime displayFormat="MMMM YYYY" min="2000" pickerFormat="MMMM YYYY" [(ngModel)]="review.reviewDate" formControlName="reviewDate"></ion-datetime>
       </ion-item>
       <ion-item>
         <ion-range min="0" max="5" pin="true" [(ngModel)]="review.reviewRating" formControlName="reviewRating">
-          <ion-icon range-left color="danger" name="sad"></ion-icon>
-          <ion-icon range-right color="secondary" name="happy"></ion-icon>
+          <ion-icon range-left name="md-star-outline"></ion-icon>
+          <ion-icon range-right name="md-star"></ion-icon>
         </ion-range>
       </ion-item>
     </form>

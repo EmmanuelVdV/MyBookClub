@@ -1,3 +1,23 @@
-page-home {
+.ios,
+.md {
+  page-home {
 
+    ion-content {
+      background-image: url('../assets/img/2-resize16-9.jpg');
+      background-repeat: no-repeat;
+      background-size: cover;
+      background-color: transparent;
+      background-position: center;
+    }
+
+    ion-list,
+    ion-item {
+    	background-color: transparent;
+    }
+
+    ion-grid {
+    	background-color: #fff;
+    	padding: 0px;
+    }
+  }
 }

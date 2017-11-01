@@ -3,7 +3,7 @@
   page-login {
 
     ion-content {
-      background-image: url('../assets/img/1.jpg');
+      background-image: url('../assets/img/1-resize16-9.jpg');
       background-repeat: no-repeat;
       background-size: cover;
       background-color: transparent;
@@ -14,6 +14,10 @@
     ion-list,
     ion-item {
       background-color: transparent;
+    }
+
+    ion-item {
+      padding-left: 8px;
     }
 
     ion-label {
@@ -28,6 +32,11 @@
 
     .invalid {
       border: 1px solid #ea6153;
+    }
+
+    .create-account {
+      color: #fff;
+      border-color: #fff;
     }
   }
 }

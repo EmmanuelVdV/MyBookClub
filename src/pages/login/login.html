@@ -32,17 +32,17 @@
  
             </ion-list>
  
-            <button ion-button block (click)="login()" class="login-button">Login</button>
+            <button ion-button block (click)="login()" class="login-button" icon-right>Login
+            <ion-icon name="md-arrow-round-forward"></ion-icon>
+            </button>
  
         </ion-col>
     </ion-row>
  
     <ion-row>
-        <ion-col col-3></ion-col>
         <ion-col>
-            <button ion-button block clear (click)="launchSignup()" class="create-account">Create an account</button>
+            <button ion-button block outline (click)="launchSignup()" class="create-account">Create an account</button>
         </ion-col>
-        <ion-col col-3></ion-col>
     </ion-row>
 
 </ion-content>
