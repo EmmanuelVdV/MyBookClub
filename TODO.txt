@@ -42,3 +42,8 @@ https://stackoverflow.com/questions/6370690/media-queries-how-to-target-desktop-
 
 Déploiement sur iOS
 https://www.joshmorony.com/building-ionic-2-applications-for-ios-without-a-mac/
+
+
+git add -A
+git commit -m "Million dollar commit"
+git push ionic master
