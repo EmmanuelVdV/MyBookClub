@@ -1,5 +1,3 @@
-Build sur Ionic Pro : revoir dernier log de Builf Failed et page upgrade firebase 4.0 => https://github.com/angular/angularfire2/blob/master/docs/version-4-upgrade.md
-
 Ecran Home
 - Retirer bouton de "déconnexion" et remplacer par bouton "Profil" => partiellement fait
 - VirtualScroll => problème sur Ionic2 avec virtualScroll et virtuelHeader sur données asynchrones (Mobile App Dev w/ Ionic2 page 127) => upgrade to ionic3 ?
@@ -10,7 +8,7 @@ Ecran Home
 Ecran Review
 - Gérer le grisage / dégrisage bouton "Save"
 - Ajouter bouton "Cancel" avec gestion d'un message de confirmation si changements détectés
-- Supprimer "review-working.html"
+
 
 Ecran Login
 - Conserver l'utilisateur loggué dans localStorage
@@ -29,6 +27,7 @@ A plus long terme
 - Ajout "Menu" avec Profil, book club et visi autres membres
 - Gestion de catégories avec groupage par catégorie dans Home
 - Recherche de livre sur Google depuis création Review + scan code barre
+- Upgrade firebase 4.0 => https://github.com/angular/angularfire2/blob/master/docs/version-4-upgrade.md
 
 
 Comptes de test :

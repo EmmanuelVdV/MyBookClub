@@ -5,44 +5,27 @@
   Ionic pages and navigation.
 -->
 <ion-header>
-
   <ion-navbar>
     <ion-title>Login</ion-title>
   </ion-navbar>
-
 </ion-header>
-
-
 <ion-content padding>
-    <ion-row class="login-form">
-        <ion-col>
-            <ion-list no-lines>
- 
-              <ion-item>
-                <ion-label floating>Email</ion-label> -->
-                <ion-input [(ngModel)]="email" type="email"></ion-input>
-              </ion-item>
+  <ion-card class="login-form">
+  <ion-card-content>
+      <ion-item>
+        <ion-label floating>Email</ion-label>
+        <ion-input [(ngModel)]="email" type="email"></ion-input>
+      </ion-item>
+      <ion-item>
+        <ion-label floating>Password</ion-label>
+        <ion-input [(ngModel)]="password" type="password"></ion-input>
+      </ion-item>
 
-              <!-- <ion-item><p></p></ion-item> -->
- 
-              <ion-item>
-                <ion-label floating>Password</ion-label> -->
-                <ion-input [(ngModel)]="password" type="password"></ion-input>
-              </ion-item>
- 
-            </ion-list>
- 
-            <button ion-button block (click)="login()" class="login-button" icon-right>Login
-            <ion-icon name="md-arrow-round-forward"></ion-icon>
-            </button>
- 
-        </ion-col>
-    </ion-row>
- 
-    <ion-row>
-        <ion-col>
-            <button ion-button block outline (click)="launchSignup()" class="create-account">Create an account</button>
-        </ion-col>
-    </ion-row>
 
+    </ion-card-content>
+  </ion-card>
+  <button ion-button block (click)="login()" class="login-button" icon-right>Login
+    <ion-icon name="md-arrow-round-forward"></ion-icon>
+  </button>
+  <button ion-button block outline (click)="launchSignup()" class="create-account">Create an account</button>
 </ion-content>
