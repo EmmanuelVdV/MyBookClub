@@ -10,14 +10,18 @@
       background-position: center;
     }
 
+    .input {
+      border-bottom: 1px solid;
+    }
 
     .invalid {
       border-bottom: 1px solid #ea6153;
     }
 
     .create-account {
-      color: #fff;
-      border-color: #fff;
+      color: #ffffff;
+      border-color: #ffffff;
+      border: 2px solid;
     }
   }
 }

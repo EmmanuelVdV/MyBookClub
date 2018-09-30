@@ -24,12 +24,12 @@
     <ion-item *ngFor="let review of reviews" (click)="viewReview(review)" detail-push>
       <ion-grid>
         <ion-row align-items-center>
-          <ion-col col-8>
+          <ion-col col-9>
             <h3>{{review.bookTitle}}</h3>
             <p>{{review.bookAuthor}}</p>
           </ion-col>
           <!-- ion-avatar item-right>{{review.bookPicture}}</ion-avatar -->
-          <ion-col col-4 align-self-center>
+          <ion-col col-3 align-self-center>
             <stars-component [rating]="review.reviewRating"></stars-component>
           </ion-col>
         </ion-row>

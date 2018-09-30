@@ -41,6 +41,21 @@ export class ReviewData {
 	}
 
 
+	getFilteredReviews(queryString): Promise<any> {
+		return this.loadReviews().then(data => {
+			let theFilteredReviews: Array<iReview> = [];
+
+			for (let theReview of data) {
+				if (theReview.bookTitle.toLowerCase().indexOf(queryString.toLowerCase()) > -1 || theReview.bookAuthor.toLowerCase().indexOf(queryString.toLowerCase()) > -1) {
+					theFilteredReviews.push(theReview);
+				}
+			}
+
+			return theFilteredReviews;
+		});
+	}
+
+
 	pushReview(returnReview: iReview) {
 		const correctedReview = this.correctReview(returnReview);
 		const p = this.reviews.push(correctedReview);

@@ -48,3 +48,5 @@ https://www.joshmorony.com/building-ionic-2-applications-for-ios-without-a-mac/
 git add -A
 git commit -m "Million dollar commit"
 git push ionic master
+
+ionic serve

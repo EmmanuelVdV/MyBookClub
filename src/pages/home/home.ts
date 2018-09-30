@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 import { NavController, ModalController } from 'ionic-angular';
 
-import { AngularFireDatabase } from 'angularfire2/database';
+// import { AngularFireDatabase } from 'angularfire2/database';
 // import { Subject } from 'rxjs/Subject';
 
 import { iReview } from '../../providers/iReview';
@@ -39,18 +39,19 @@ export class HomePage {
   viewReview(review: iReview) {
     console.log(review);
     let index = this.reviews.indexOf(review);
-    
-    let reviewBeforeChange : iReview;
+
+    let reviewBeforeChange: iReview;
     reviewBeforeChange = Object.assign({}, review); // clone review before any change in case of cancellation
-    
+
     let reviewModal = this.modalCtrl.create(ReviewPage, { review: review });
-    
+
     reviewModal.onDidDismiss(returnData => {
       if (returnData.operation == "save") { // here it's an update
         this.ReviewData.updateReview(returnData.data).then(_ => {
           if (index > -1) {
-            this.reviews[index]=review;
-            this.sortReviewList();} // replaced in local list if correctly saved on DB
+            this.reviews[index] = review;
+            this.sortReviewList();
+          } // replaced in local list if correctly saved on DB
         }).catch(err => {
           console.log(err); // MUST add error popup
         });
@@ -59,7 +60,8 @@ export class HomePage {
         this.ReviewData.removeReview(review).then(_ => {
           if (index > -1) {
             this.reviews.splice(index, 1);
-            this.sortReviewList();} // deleted from local list if correctly removed from DB
+            this.sortReviewList();
+          } // deleted from local list if correctly removed from DB
         }).catch(err => {
           console.log(err); // MUST add error popup
         });
@@ -80,10 +82,10 @@ export class HomePage {
         this.ReviewData.pushReview(returnData.data).then(p => {
           // console.log(p);
 
-          let newReview : iReview;
+          let newReview: iReview;
           newReview = returnData.data as iReview;
           newReview.$key = p.key;
-          
+
           this.reviews.push(newReview); // added to local list if correctly saved on DB
           this.sortReviewList();
         }).catch(err => {
@@ -109,16 +111,35 @@ export class HomePage {
 
   }
 
-  /*getReviews(event) {
+  getReviews(event) {
+    this.ReviewData.getReviews().then(data => {
+      this.reviews = data;
+      this.sortReviewList();
+    });
+
     let queryString = event.target.value;
+
     if (queryString !== undefined) {
-    if (queryString.trim() !== '') {
-    this.searchSubject.next(queryString);
+      if (queryString.trim() == '') {
+        return; // if querystring is empty, do nothing
+      }
+
+      this.ReviewData.getFilteredReviews(queryString).then(data => {
+        this.reviews = data;
+        this.sortReviewList();
+      })
     }
-    }
+    // this.searchSubject.next(queryString);
   }
-    
-    
+
+  resetList(event) {
+    this.ReviewData.getReviews().then(data => {
+      this.reviews = data;
+      this.sortReviewList();
+    });
+  }
+
+
   /* customHeaderFn(record, recordIndex, records) {
     if (recordIndex > 0) {
     if (record.name.charAt(0) !== records[recordIndex-1].name.charAt(0)) {
