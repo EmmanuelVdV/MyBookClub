@@ -9,6 +9,9 @@ Ecran Review
 - Gérer le grisage / dégrisage bouton "Save"
 - Ajouter bouton "Cancel" avec gestion d'un message de confirmation si changements détectés
 
+En cours : gestion "barcode scan"
+Problème : pas testable dans browser => implémenter la recherche sur Amazon à partir du barcode 
+ionic cordova platform rm browser 
 
 Ecran Login
 - Conserver l'utilisateur loggué dans localStorage
@@ -50,3 +53,21 @@ git commit -m "Million dollar commit"
 git push ionic master
 
 ionic serve
+
+
+
+
+Build :
+Retrait plugin codova-console ==>
+ionic cordova plugin rm cordova-console
+
+Problème XCode 10 avec cordova-ios 4.5  ==>
+ionic cordova run ios --device --target="iPhone7" -- --buildFlag="-UseModernBuildSystem=0"
+ionic cordova build ios -- --buildFlag="-UseModernBuildSystem=0"
+
+Problème plist.info ==>
+ionic cordova platform rm ios
+ionic cordova platform add ios
+
+si problème avec npm install : --unsafe-perm=true
+
