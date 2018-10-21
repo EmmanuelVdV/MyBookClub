@@ -96,4 +96,7 @@
     <plugin name="phonegap-plugin-barcodescanner" spec="^7.0.4">
         <variable name="CAMERA_USAGE_DESCRIPTION" value=" " />
     </plugin>
+    <edit-config target="NSCameraUsageDescription" file="*-Info.plist" mode="merge">
+        <string>To scan barcodes</string>
+    </edit-config>
 </widget>

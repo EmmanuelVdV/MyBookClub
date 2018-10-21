@@ -58,7 +58,23 @@ ionic serve
 
 
 
-Build :
+Build sur macos :
+sudo rm -dr platforms/ www/ plugins // nettoyage répertoires
+sudo git reset --hard // abandon des précédentes modifs
+sudo git pull
+sudo npm update --unsafe-perm=true
+sudo npm install @ionic/app-scripts --unsafe-perm=true
+sudo npm install typescript --unsafe-perm=true
+sudo npm install @types/request --unsafe-perm=true
+ionic cordova build ios -- --buildFlag="-UseModernBuildSystem=0"
+Finder => changer droits sur fichiers du répertoire MyBookClub
+Ouvrir MybookClub.xcodeworkspace dans platforms/ios/
+Ajouter dans xcode la signature sur le projet : team "Emmanuel Vandevelde"
+Changer dans xcode "Project Settings" > "Legacy Build System"
+
+
+
+
 Retrait plugin cordova-plugin-console ==>
 ionic cordova plugin rm cordova-plugin-console
 

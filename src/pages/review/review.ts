@@ -104,7 +104,7 @@ export class ReviewPage {
 
   scan() {
     this.barcodeScanner.scan({
-      preferFrontCamera : true, // iOS and Android
+      preferFrontCamera : false, // iOS and Android
       showFlipCameraButton : true, // iOS and Android
       showTorchButton : true, // iOS and Android
       // torchOn: true, // Android, launch with the torch switched on (if available)
@@ -114,7 +114,7 @@ export class ReviewPage {
       // formats : "QR_CODE,PDF_417", // default: all but PDF_417 and RSS_EXPANDED
       // orientation : "landscape", // Android only (portrait|landscape), default unset so it rotates with the device
       disableAnimations : true, // iOS
-      disableSuccessBeep: false // iOS and Android
+      disableSuccessBeep: true // iOS and Android
     }).then(barcodeData => {
       console.log('Barcode Data : ', barcodeData);
       this.bookService.search(this.review.bookTitle, this.review.bookAuthor, barcodeData.text).then(
