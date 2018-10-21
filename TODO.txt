@@ -59,8 +59,8 @@ ionic serve
 
 
 Build :
-Retrait plugin codova-console ==>
-ionic cordova plugin rm cordova-console
+Retrait plugin cordova-plugin-console ==>
+ionic cordova plugin rm cordova-plugin-console
 
 Problème XCode 10 avec cordova-ios 4.5  ==>
 ionic cordova run ios --device --target="iPhone7" -- --buildFlag="-UseModernBuildSystem=0"
