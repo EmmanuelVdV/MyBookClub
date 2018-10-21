@@ -28,6 +28,7 @@ Ecran Profil
 
 A plus long terme
 - Ajout "Menu" avec Profil, book club et visi autres membres
+- Suivi des prêts de livre
 - Gestion de catégories avec groupage par catégorie dans Home
 - Recherche de livre sur Google depuis création Review + scan code barre
 - Upgrade firebase 4.0 => https://github.com/angular/angularfire2/blob/master/docs/version-4-upgrade.md

@@ -4,5 +4,11 @@
     "cordova": {}
   },
   "type": "ionic-angular",
-  "app_id": "204bb084"
+  "app_id": "204bb084",
+  "proxies": [
+    {
+      "path": "/api/booksearch",
+      "proxyUrl": "https://www.googleapis.com/books/v1/volumes?q="
+    }
+  ]
 }

@@ -1,4 +1,5 @@
 import { BrowserModule } from '@angular/platform-browser';
+import { HttpModule } from '@angular/http';
 import { ErrorHandler, NgModule } from '@angular/core';
 import { IonicApp, IonicErrorHandler, IonicModule } from 'ionic-angular';
 import { SplashScreen } from '@ionic-native/splash-screen';
@@ -18,6 +19,7 @@ import { ReviewPage } from '../pages/review/review';
 
 import { AuthService } from '../providers/auth-service';
 import { ReviewData } from '../providers/ReviewData';
+import { BookServiceProvider } from '../providers/book-service';
 
 import { StarsComponent} from '../components/stars-component/stars-component';
 
@@ -47,6 +49,7 @@ export const firebaseConfig = {
   ],
   imports: [
     BrowserModule,
+    HttpModule,
     IonicModule.forRoot(MyApp),
     AngularFireModule.initializeApp(firebaseConfig),
     AngularFireDatabaseModule,
@@ -67,7 +70,8 @@ export const firebaseConfig = {
     {provide: ErrorHandler, useClass: IonicErrorHandler},
     AuthService,
     ReviewData,
-    BarcodeScanner
+    BarcodeScanner,
+    BookServiceProvider
   ]
 })
 export class AppModule {}

@@ -20,16 +20,19 @@ export class BookServiceProvider {
   search(title: string, author: string, isbn: string): Promise<{title: string, author: string, description: string}> {
     let searchQuery: String = '';
 
-    if(title !=''){searchQuery+=title;}
-    if(author !=''){searchQuery+='+inauthor:'+author;}
-    if(isbn !=''){searchQuery+='+isbn:'+isbn;}
+    if(title !='' && title != null){searchQuery+=title;}
+    if(author !='' && author != null){searchQuery+='+inauthor:'+author;}
+    if(isbn !='' && isbn != null){searchQuery+='+isbn:'+isbn;}
+
+    console.log('https://www.googleapis.com/books/v1/volumes?q='+searchQuery+'&key='+this.apikey);
 
     return new Promise(resolve => {
-      this.http.get('/api/booksearch'+searchQuery+'&key='+this.apikey).map(res => res.json()).subscribe(data => {
-        if(data.status === 'OK'){
-          resolve({title: data.item[0].volumeInfo.title,
-            author: data.item[0].volumeInfo.authors,
-            description: data.item[0].description
+      this.http.get('https://www.googleapis.com/books/v1/volumes?q='+searchQuery+'&key='+this.apikey).map(res => res.json()).subscribe(data => {
+        if(data.totalItems != 0){
+          console.log(data);
+          resolve({title: data.items[0].volumeInfo.title,
+            author: data.items[0].volumeInfo.authors[0],
+            description: data.items[0].volumeInfo.description
           });
         } else {
           console.log(data);

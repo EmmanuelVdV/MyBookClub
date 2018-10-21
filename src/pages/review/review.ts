@@ -3,6 +3,7 @@ import { IonicPage, ViewController, NavParams, AlertController } from 'ionic-ang
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { BarcodeScanner } from '@ionic-native/barcode-scanner';
 
+import { BookServiceProvider } from '../../providers/book-service';
 import { iReview } from '../../providers/iReview';
 
 /**
@@ -25,7 +26,7 @@ export class ReviewPage {
 
   isRemoveHidden: boolean = true; // default to "Remove" button hidden
 
-  constructor(public viewCtrl: ViewController, public navParams: NavParams, public alertCtrl: AlertController, public formBuilder: FormBuilder, private barcodeScanner: BarcodeScanner) {
+  constructor(public viewCtrl: ViewController, public navParams: NavParams, public alertCtrl: AlertController, public formBuilder: FormBuilder, private barcodeScanner: BarcodeScanner, private bookService: BookServiceProvider) {
 
     this.reviewForm = formBuilder.group({
       bookTitle: ['', Validators.compose([Validators.maxLength(256), Validators.required])],
@@ -116,6 +117,15 @@ export class ReviewPage {
       disableSuccessBeep: false // iOS and Android
     }).then(barcodeData => {
       console.log('Barcode Data : ', barcodeData);
+      this.bookService.search(this.review.bookTitle, this.review.bookAuthor, barcodeData.text).then(
+        res => {
+          console.log(res);
+          this.review.bookTitle = res.title;
+          this.review.bookAuthor = res.author;
+          this.review.bookDescription = res.description;
+          console.log(this.review);
+        }
+      );
     }).catch(err => {
       console.log('Error', err);
     });
