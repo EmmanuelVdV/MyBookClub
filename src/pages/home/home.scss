@@ -3,12 +3,24 @@
   page-home {
 
     ion-content {
-      background-image: url('../assets/img/2-resize16-9.jpg');
-      background-repeat: no-repeat;
-      background-size: cover;
-      background-color: transparent;
-      background-position: center;
+    //  background-image: url('../assets/img/2-resize16-9.jpg');
+    //  background-repeat: no-repeat;
+    //  background-size: cover;
+      background-color: #3F51B5;
+    //  background-position: center;
     }
+
+  //  .toolbar-background, .toolbar-background-ios {
+  //    background-color: #3F51B5;
+  //  }
+
+  //  .searchbar-input {
+
+  //  }
+
+  //  .fab, .fab-ios {
+  //    background-color: #9FA8DA;
+  //  }
 
     ion-list,
     ion-item {

@@ -3,13 +3,44 @@
   page-review {
 
     ion-content {
-      background-image: url('../assets/img/3-resize16-9.jpg');
-      background-repeat: no-repeat;
-      background-size: cover;
-      background-color: transparent;
-      background-position: center;
+    //  background-image: url('../assets/img/3-resize16-9.jpg');
+    //  background-repeat: no-repeat;
+    //  background-size: cover;
+      background-color: #3F51B5;
+    //  background-position: center;
     }
 
+    .save-button {
+      background-color: #9FA8DA;
+    }
+    .save-button:active {
+      background-color: #7986CB;
+    }
+    .save-button:hover {
+      background-color: #7986CB;
+    }
+
+    .cancel-button {
+      background-color: #9FA8DA;
+    }
+    .cancel-button:active {
+      background-color: #7986CB;
+    }
+    .cancel-button:hover {
+      background-color: #7986CB;
+    }
+
+    .scan-button, .speech-button, .websearch-button {
+      background-color: #9FA8DA;
+    }
+
+    .websearch-button:active, .websearch-button:hover, .speech-button:active, .speech-button:hover, .scan-button:active, .scan-button:hover {
+      background-color: #7986CB;
+    }
+
+    .input {
+      border-bottom: 1px solid;
+    }
 
     .invalid {
       border: 1px solid #ea6153;

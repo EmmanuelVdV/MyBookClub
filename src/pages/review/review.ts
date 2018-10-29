@@ -131,4 +131,12 @@ export class ReviewPage {
     });
   }
 
+  speech() {
+
+  }
+
+  websearch() {
+    
+  }
+
 }

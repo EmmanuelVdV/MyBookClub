@@ -6,33 +6,31 @@
 -->
 <ion-header>
   <ion-navbar>
-    <ion-title>Create a new account</ion-title>
+    <!--ion-title>Créez votre compte</ion-title-->
   </ion-navbar>
 </ion-header>
 <ion-content padding>
-  <ion-row>
-    <ion-col>
-      <ion-list no-lines>
-        <form class="account-form">
-          <ion-item>
-            <ion-label floating>
-              Username
-            </ion-label>
-            <ion-input [(ngModel)]="username" name="username" type="username"></ion-input>
-          </ion-item>
-          <ion-item>
-            <ion-label floating>
-              Email
-            </ion-label>
-            <ion-input [(ngModel)]="email" name="email" type="email"></ion-input>
-          </ion-item>
-          <ion-item>
-            <ion-label floating>
-              Password
-            </ion-label>
-            <ion-input [(ngModel)]="password" name="Password" type="password"></ion-input>
-          </ion-item>
-          <!-- <ion-item>
+  <ion-card class="account-form">
+    <ion-card-content>
+      <ion-item>
+        <ion-label floating>
+          Nom utilisateur
+        </ion-label>
+        <ion-input [(ngModel)]="username" name="username" type="username"></ion-input>
+      </ion-item>
+      <ion-item>
+        <ion-label floating>
+          E-mail
+        </ion-label>
+        <ion-input [(ngModel)]="email" name="email" type="email"></ion-input>
+      </ion-item>
+      <ion-item>
+        <ion-label floating>
+          Mot de passe
+        </ion-label>
+        <ion-input [(ngModel)]="password" name="Password" type="password"></ion-input>
+      </ion-item>
+      <!-- <ion-item>
                     <ion-label>Language</ion-label>
                     <ion-select [(ngModel)]="language">
                         <ion-option value="Deutsch">Deutsch</ion-option>
@@ -40,9 +38,7 @@
                         <ion-option value="Français">Français</ion-option>
                     </ion-select>
                 </ion-item> -->
-        </form>
-      </ion-list>
-      <button ion-button block (click)="register()" class="continue-button">Register</button>
-    </ion-col>
-  </ion-row>
+    </ion-card-content>
+  </ion-card>
+  <button ion-button block (click)="register()" class="continue-button">Créer le compte</button>
 </ion-content>

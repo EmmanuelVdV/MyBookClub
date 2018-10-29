@@ -3,11 +3,11 @@
   page-login {
 
     ion-content {
-      background-image: url('../assets/img/1-resize16-9.jpg');
-      background-repeat: no-repeat;
-      background-size: cover;
-      background-color: transparent;
-      background-position: center;
+      // background-image: url('../assets/img/1-resize16-9.jpg');
+      // background-repeat: no-repeat;
+      // background-size: cover;
+      background-color: #3F51B5;
+      // background-position: center;
     }
 
     .input {
@@ -18,7 +18,17 @@
       border-bottom: 1px solid #ea6153;
     }
 
-    .create-account {
+    .login-button {
+      background-color: #9FA8DA;
+    }
+    .login-button:active {
+      background-color: #7986CB;
+    }
+    .login-button:hover {
+      background-color: #7986CB;
+    }
+
+    .create-account-button {
       color: #ffffff;
       border-color: #ffffff;
       border: 2px solid;

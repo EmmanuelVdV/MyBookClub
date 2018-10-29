@@ -1,7 +1,12 @@
 .ios,
 .md {
   page-signup {
-    ion-label,
+
+    ion-content {
+      background-color: #3F51B5;
+    }
+
+/*    ion-label,
     .select-text {
       margin-left: 10px;
     }
@@ -14,10 +19,24 @@
 
     ion-button {
       margin: 5px 10px;
+    } */
+
+    .input {
+      border-bottom: 1px solid;
     }
 
     .invalid {
-      border: 1px solid #ea6153;
+      border-bottom: 1px solid #ea6153;
+    }
+
+    .continue-button {
+      background-color: #9FA8DA;
+    }
+    .continue-button:active {
+      background-color: #7986CB;
+    }
+    .continue-button:hover {
+      background-color: #7986CB;
     }
   }
 }
