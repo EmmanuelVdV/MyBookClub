@@ -1,37 +1,40 @@
 .ios,
 .md {
-  page-login {
-
-    ion-content {
-      // background-image: url('../assets/img/1-resize16-9.jpg');
-      // background-repeat: no-repeat;
-      // background-size: cover;
-      background-color: #3F51B5;
-      // background-position: center;
+    page-login {
+        ion-content {
+            // background-image: url('../assets/img/1-resize16-9.jpg');
+            // background-repeat: no-repeat;
+            // background-size: cover;
+            background-color: color($colors, dark, base); // background-position: center;
+        }
+        .input {
+            border-bottom: 1px solid;
+        }
+        .invalid {
+            border-bottom: 1px solid color($colors, danger, base);
+        }
+        .login-button {
+            // background-color: color($colors, primary, base);
+            :active,
+            :hover {
+                background-color: color($colors, primary, base);
+            }
+        }
+        img {
+            margin-left: auto;
+            margin-right: auto;
+            display: block;
+        }
+        p {
+            color: #ffffff;
+            font-weight: bold;
+            text-align: center;
+        }
+        
+        .create-account-button {
+            color: #ffffff;
+            border-color: #ffffff;
+            border: 2px solid;
+        }
     }
-
-    .input {
-      border-bottom: 1px solid;
-    }
-
-    .invalid {
-      border-bottom: 1px solid #ea6153;
-    }
-
-    .login-button {
-      background-color: #9FA8DA;
-    }
-    .login-button:active {
-      background-color: #7986CB;
-    }
-    .login-button:hover {
-      background-color: #7986CB;
-    }
-
-    .create-account-button {
-      color: #ffffff;
-      border-color: #ffffff;
-      border: 2px solid;
-    }
-  }
 }

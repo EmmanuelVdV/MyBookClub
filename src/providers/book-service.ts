@@ -17,7 +17,7 @@ export class BookServiceProvider {
     console.log('Hello BookServiceProvider Provider');
   }
 
-  search(title: string, author: string, isbn: string): Promise<{title: string, author: string, description: string}> {
+  search(title: string, author: string, isbn: string): Promise<{title: string, author: string, description: string, picture: string}> {
     let searchQuery: String = '';
 
     if(title !='' && title != null){searchQuery+=title;}
@@ -31,8 +31,9 @@ export class BookServiceProvider {
         if(data.totalItems != 0){
           console.log(data);
           resolve({title: data.items[0].volumeInfo.title,
-            author: data.items[0].volumeInfo.authors[0],
-            description: data.items[0].volumeInfo.description
+            author: (data.items[0].volumeInfo.authors ? data.items[0].volumeInfo.authors[0] : ''),
+            description: data.items[0].volumeInfo.description,
+            picture: data.items[0].volumeInfo.imageLinks.smallThumbnail
           });
         } else {
           console.log(data);

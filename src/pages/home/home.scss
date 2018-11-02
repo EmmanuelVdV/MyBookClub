@@ -6,7 +6,8 @@
     //  background-image: url('../assets/img/2-resize16-9.jpg');
     //  background-repeat: no-repeat;
     //  background-size: cover;
-      background-color: #3F51B5;
+      background-color: color($colors, dark, base);
+      //#3F51B5;
     //  background-position: center;
     }
 
@@ -18,18 +19,35 @@
 
   //  }
 
-  //  .fab, .fab-ios {
-  //    background-color: #9FA8DA;
-  //  }
-
     ion-list,
     ion-item {
     	background-color: transparent;
     }
 
+    ion-toolbar,
+    ion-header {
+      background-color: color($colors, dark, base)
+    }
+
+    h3 {
+      color: #ffffff;
+      font-weight: bold
+    }
+
+    p {
+      color: #e2e0e0;
+    }
+
     ion-grid {
     	background-color: #fff;
     	padding: 0px;
+    }
+
+    img {
+      display: block;
+      width: auto;
+      height: auto;
+      max-height: 56px
     }
   }
 }

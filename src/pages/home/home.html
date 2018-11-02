@@ -10,30 +10,30 @@
     </ion-buttons>
   </ion-navbar-->
   <ion-toolbar>
-    <ion-searchbar [(ngModel)]="searchQuery" (ionInput)="getReviews($event)" (ionClear)="resetList($event)">
+    <ion-searchbar placeholder="Filtrer" [(ngModel)]="searchQuery" (ionInput)="getReviews($event)" (ionClear)="resetList($event)">
     </ion-searchbar>
   </ion-toolbar>
 </ion-header>
 <ion-content>
   <ion-fab right bottom>
-    <button ion-fab (click)="addReview()">
+    <button ion-fab secondary (click)="addReview()">
       <ion-icon name="md-add"></ion-icon>
     </button>
   </ion-fab>
   <ion-list no-lines>
     <ion-item *ngFor="let review of reviews" (click)="viewReview(review)" detail-push>
-      <ion-grid>
+      <!--ion-grid>
         <ion-row align-items-center>
-          <ion-col col-9>
+          <ion-col col-9-->
+            <ion-thumbnail item-start><img [src]="(review.bookPicture == '' || review.bookPicture == null) ? '../../assets/img/noPicture.png' : review.bookPicture"></ion-thumbnail>
             <h3>{{review.bookTitle}}</h3>
             <p>{{review.bookAuthor}}</p>
-          </ion-col>
-          <!-- ion-avatar item-right>{{review.bookPicture}}</ion-avatar -->
-          <ion-col col-3 align-self-center>
-            <stars-component [rating]="review.reviewRating"></stars-component>
-          </ion-col>
+          <!--/ion-col>
+          <ion-col col-3 align-self-center-->
+            <stars-component item-end [rating]="review.reviewRating"></stars-component>
+          <!--/ion-col>
         </ion-row>
-      </ion-grid>
+      </ion-grid-->
     </ion-item>
   </ion-list>
 </ion-content>

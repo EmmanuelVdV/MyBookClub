@@ -1,42 +1,20 @@
 .ios,
 .md {
-  page-signup {
-
-    ion-content {
-      background-color: #3F51B5;
+    page-signup {
+        ion-content {
+            background-color: color($colors, dark, base);
+        }
+        .input {
+            border-bottom: 1px solid;
+        }
+        .invalid {
+            border-bottom: 1px solid color($colors, danger, base);
+        }
+        .continue-button {
+            :active,
+            :hover {
+                background-color: color($colors, primary, base);
+            }
+        }
     }
-
-/*    ion-label,
-    .select-text {
-      margin-left: 10px;
-    }
-
-    ion-input,
-    ion-textarea {
-      background-color: #f2f2f2;
-      padding: 5px;
-    }
-
-    ion-button {
-      margin: 5px 10px;
-    } */
-
-    .input {
-      border-bottom: 1px solid;
-    }
-
-    .invalid {
-      border-bottom: 1px solid #ea6153;
-    }
-
-    .continue-button {
-      background-color: #9FA8DA;
-    }
-    .continue-button:active {
-      background-color: #7986CB;
-    }
-    .continue-button:hover {
-      background-color: #7986CB;
-    }
-  }
 }

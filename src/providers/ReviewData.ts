@@ -69,7 +69,7 @@ export class ReviewData {
 			bookTitle: correctedReview.bookTitle,
 			bookAuthor: correctedReview.bookAuthor,
 			bookDescription: correctedReview.bookDescription,
-			//bookPicture: data.bookPicture,
+			bookPicture: correctedReview.bookPicture,
 			//reviewCategory: data.reviewCategory,
 			reviewComment: correctedReview.reviewComment,
 			reviewRating: correctedReview.reviewRating,
@@ -87,6 +87,8 @@ export class ReviewData {
 	correctReview(data: iReview) { // used to complete missing fields
 		if (!data.bookDescription)
 			data.bookDescription = '';
+		if (!data.bookPicture)
+			data.bookPicture = '';
 		if (!data.reviewComment)
 			data.reviewComment = '';
 		if (!data.reviewDate)

@@ -47,7 +47,7 @@ export class LoginPage {
 	showLoader(): void {
 
 		this.loading = this.loadingCtrl.create({
-			content: 'Authenticating...'
+			content: 'Authentification en cours...'
 		});
 
 		this.loading.present();

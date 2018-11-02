@@ -50,7 +50,7 @@ export class SignupPage {
  
   showLoader(): void {
     this.loading = this.loadingCtrl.create({
-      content: 'Authenticating...'
+      content: 'Création du compte en cours...'
     });
  
     this.loading.present(); 

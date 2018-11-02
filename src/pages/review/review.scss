@@ -1,49 +1,39 @@
 .ios,
 .md {
-  page-review {
+    page-review {
+        ion-content {
+            //  background-image: url('../assets/img/3-resize16-9.jpg');
+            //  background-repeat: no-repeat;
+            //  background-size: cover;
+            background-color: color($colors, dark, base); //  background-position: center;
+        }
 
-    ion-content {
-    //  background-image: url('../assets/img/3-resize16-9.jpg');
-    //  background-repeat: no-repeat;
-    //  background-size: cover;
-      background-color: #3F51B5;
-    //  background-position: center;
-    }
+        .websearch-button:active,
+        .websearch-button:hover,
+        .speech-button:active,
+        .speech-button:hover,
+        .scan-button:active,
+        .scan-button:hover,
+        .save-button:active,
+        .save-button:hover,
+        .cancel-button:active,
+        .cancel-button:hover {
+            background-color: color($colors, primary, base);
+        }
 
-    .save-button {
-      background-color: #9FA8DA;
-    }
-    .save-button:active {
-      background-color: #7986CB;
-    }
-    .save-button:hover {
-      background-color: #7986CB;
-    }
+        .input {
+            border-bottom: 1px solid;
+        }
 
-    .cancel-button {
-      background-color: #9FA8DA;
-    }
-    .cancel-button:active {
-      background-color: #7986CB;
-    }
-    .cancel-button:hover {
-      background-color: #7986CB;
-    }
+        .invalid {
+            border: 1px solid color($colors, danger, base);
+        }
 
-    .scan-button, .speech-button, .websearch-button {
-      background-color: #9FA8DA;
+        img {
+          display: block;
+          width: auto;
+          height: auto;
+          max-height: 56px
+        }
     }
-
-    .websearch-button:active, .websearch-button:hover, .speech-button:active, .speech-button:hover, .scan-button:active, .scan-button:hover {
-      background-color: #7986CB;
-    }
-
-    .input {
-      border-bottom: 1px solid;
-    }
-
-    .invalid {
-      border: 1px solid #ea6153;
-    }
-  }
 }
