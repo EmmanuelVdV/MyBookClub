@@ -1,26 +1,36 @@
+Bugs :
+- Affichage du logo sur page Login ==> devrait être OK
+- Affichage "no picture" sur écran Review ==> devrait être OK
+- Bouton "scan" reste en "active" quand on revient sur l'écran
+
+A court terme :
+- Changer la page "review" pour décomposer en onglets
+- Défiler la liste sur le livre inséré quand ajout
+- Implémenter la capacité à rentrer le clavier
+- Ramener le nombre de pages d'un livre ?
+- Suivi des prêts de livre
+- Suivi des souhaits de lecture
+- Gestion de catégories avec groupage par catégorie dans Home
+
 Ecran Home
 - Retirer bouton de "déconnexion" et remplacer par bouton "Profil" => partiellement fait
-- VirtualScroll => problème sur Ionic2 avec virtualScroll et virtuelHeader sur données asynchrones (Mobile App Dev w/ Ionic2 page 127) => upgrade to ionic3 ?
 - OrderBy : ajouter des boutons pour order par autre propriété et choisir asc/desc
-- Search 
 
 
 Ecran Review
 - Gérer le grisage / dégrisage bouton "Save"
 - Ajouter bouton "Cancel" avec gestion d'un message de confirmation si changements détectés
-
-En cours : gestion "barcode scan"
-Problème : pas testable dans browser => implémenter la recherche sur Amazon à partir du barcode 
-ionic cordova platform rm browser 
+- Ajouter gestion de tabs pour répartir les champs + agrandir "description"
+- Implémenter une recherche sur Amazon + affichage de liste de résultats
+- Implémenter la dictée des champs
 
 Ecran Login
 - Conserver l'utilisateur loggué dans localStorage
-- Contrôler la création d'un nouvel utilisateur
 - Enregistrer le nom utilisateur lors de la création d'un nouveau compte
-- Revoir la gestion d'erreur
+- Revoir la gestion d'erreur (notamment absence de réseau)
 
 Ecran Signup
-- Gérer la validation du formulaire et les erreurs
+- Gérer la validation du formulaire et les erreurs + double saisie mot de passe
 
 Ecran Profil
 - Gérer update utilisateur + déconnexion
@@ -28,9 +38,6 @@ Ecran Profil
 
 A plus long terme
 - Ajout "Menu" avec Profil, book club et visi autres membres
-- Suivi des prêts de livre
-- Gestion de catégories avec groupage par catégorie dans Home
-- Recherche de livre sur Google depuis création Review + scan code barre
 - Upgrade firebase 4.0 => https://github.com/angular/angularfire2/blob/master/docs/version-4-upgrade.md
 
 
@@ -62,15 +69,18 @@ Build sur macos :
 sudo rm -dr platforms/ www/ plugins // nettoyage répertoires
 sudo git reset --hard // abandon des précédentes modifs
 sudo git pull
-sudo npm update --unsafe-perm=true
-sudo npm install @ionic/app-scripts --unsafe-perm=true
-sudo npm install typescript --unsafe-perm=true
-sudo npm install @types/request --unsafe-perm=true
-ionic cordova build ios -- --buildFlag="-UseModernBuildSystem=0"
+si mise à jour de packages :
+    sudo npm update --unsafe-perm=true
+    sudo npm install @ionic/app-scripts --unsafe-perm=true
+    sudo npm install typescript --unsafe-perm=true
+    sudo npm install @types/request --unsafe-perm=true
+sudo ionic cordova build ios -- --buildFlag="-UseModernBuildSystem=0"
 Finder => changer droits sur fichiers du répertoire MyBookClub
 Ouvrir MybookClub.xcodeworkspace dans platforms/ios/
 Ajouter dans xcode la signature sur le projet : team "Emmanuel Vandevelde"
 Changer dans xcode "Project Settings" > "Legacy Build System"
+Lancer "Run -> iPhone Emmanuel"
+Sur le téléphone, dans Paramètres > Général > Gestion de l'appareil > Faire confiance au développeur emmanuelvdev@gmail.com
 
 
 

@@ -140,16 +140,18 @@ export class HomePage {
   }
 
 
-  /* customHeaderFn(record, recordIndex, records) {
+  customHeaderFn(record, recordIndex, records) {
+    // console.log(record);
+
     if (recordIndex > 0) {
-    if (record.name.charAt(0) !== records[recordIndex-1].name.charAt(0)) {
-    return record.name.charAt(0);
+      if (record.bookTitle.charAt(0) !== records[recordIndex - 1].bookTitle.charAt(0)) {
+        return record.bookTitle.charAt(0);
+      } else {
+        return null;
+      }
     } else {
-    return null;
+      return record.bookTitle.charAt(0);
     }
-    } else {
-    return record.name.charAt(0);
-    }
-  } */
+  }
 
 }

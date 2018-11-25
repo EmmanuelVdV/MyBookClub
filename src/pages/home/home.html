@@ -20,12 +20,15 @@
       <ion-icon name="md-add"></ion-icon>
     </button>
   </ion-fab>
-  <ion-list no-lines>
-    <ion-item *ngFor="let review of reviews" (click)="viewReview(review)" detail-push>
+  <ion-list [virtualScroll]="reviews" approxItemHeight="72px" [headerFn]="customHeaderFn" no-lines>
+    <ion-item-divider *virtualHeader="let header">
+      {{header}}
+    </ion-item-divider>
+    <ion-item *virtualItem="let review" (click)="viewReview(review)" detail-push>
       <!--ion-grid>
         <ion-row align-items-center>
           <ion-col col-9-->
-            <ion-thumbnail item-start><img [src]="(review.bookPicture == '' || review.bookPicture == null) ? '../../assets/img/noPicture.png' : review.bookPicture"></ion-thumbnail>
+            <ion-thumbnail item-start><img [src]="(review.bookPicture == '' || review.bookPicture == null) ? 'assets/img/noPicture.png' : review.bookPicture"></ion-thumbnail>
             <h3>{{review.bookTitle}}</h3>
             <p>{{review.bookAuthor}}</p>
           <!--/ion-col>

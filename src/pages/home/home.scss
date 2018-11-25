@@ -26,12 +26,17 @@
 
     ion-toolbar,
     ion-header {
-      background-color: color($colors, dark, base)
+      background-color: color($colors, dark, base);
+    }
+
+    ion-item-divider {
+      background-color: color($colors, secondary, base);
+      font-weight: bold;
     }
 
     h3 {
       color: #ffffff;
-      font-weight: bold
+      font-weight: bold;
     }
 
     p {
@@ -43,11 +48,11 @@
     	padding: 0px;
     }
 
-    img {
+    ion-img, img {
       display: block;
       width: auto;
       height: auto;
-      max-height: 56px
+      max-height: 56px;
     }
   }
 }
