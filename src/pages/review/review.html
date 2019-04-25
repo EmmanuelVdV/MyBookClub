@@ -18,7 +18,7 @@
         </button>
       </ion-col>
       <ion-col>
-        <button ion-button block color="secondary" icon-only (click)="speech()" class="speech-button">
+        <button ion-button block [color]="(isListening) ? primary : secondary" icon-only (click)="(isListening) ? stopListening() : speech()" class="speech-button">
           <ion-icon name="microphone"></ion-icon>
         </button>
       </ion-col>
@@ -31,43 +31,60 @@
   </ion-grid>
   <ion-card>
     <ion-card-content>
-      <form [formGroup]="reviewForm" class="review-form">
-        <ion-item>
-          <ion-thumbnail item-start><img [src]="(review.bookPicture == '' || review.bookPicture == null) ? 'assets/img/noPicture.png' : review.bookPicture"></ion-thumbnail>
-        <!--/ion-item>
+      <ion-segment [(ngModel)]="reviewPart">
+        <ion-segment-button #main value="main">
+          <ion-icon name="book"></ion-icon>
+        </ion-segment-button>
+        <ion-segment-button #details value="details">
+          <ion-icon name="glasses"></ion-icon>
+        </ion-segment-button>
+        <ion-segment-button #comments value="comments">
+          <ion-icon name="star"></ion-icon>
+        </ion-segment-button>
+      </ion-segment>
+      <form [formGroup]="reviewForm" class="review-form" [ngSwitch]="reviewPart">
+        <div *ngSwitchCase="'main'">
+          <ion-item>
+            <ion-thumbnail item-start><img [src]="(review.bookPicture == '' || review.bookPicture == null) ? 'assets/img/noPicture.png' : review.bookPicture"></ion-thumbnail>
+            <!--/ion-item>
         <ion-item-->
-          <ion-label floating>Titre</ion-label>
-          <ion-input [(ngModel)]="review.bookTitle" formControlName="bookTitle" type="text" [class.invalid]="!reviewForm.controls.bookTitle.valid && (reviewForm.controls.bookTitle.dirty || submitAttempt)"></ion-input>
-        </ion-item>
-        <ion-item *ngIf="!reviewForm.controls.bookTitle.valid && (reviewForm.controls.bookTitle.dirty || submitAttempt)">
-          <p>Champ obligatoire - 1024 caractères maximum</p>
-        </ion-item>
-        <ion-item>
-          <ion-label floating>Auteur</ion-label>
-          <ion-input [(ngModel)]="review.bookAuthor" formControlName="bookAuthor" type="text" [class.invalid]="!reviewForm.controls.bookAuthor.valid && (reviewForm.controls.bookAuthor.dirty || submitAttempt)"></ion-input>
-        </ion-item>
-        <ion-item *ngIf="!reviewForm.controls.bookAuthor.valid && (reviewForm.controls.bookAuthor.dirty || submitAttempt)">
-          <p>Champ obligatoire - 256 caractères maximum</p>
-        </ion-item>
-        <ion-item>
-          <ion-label floating>Description</ion-label>
-          <ion-textarea [(ngModel)]="review.bookDescription" formControlName="bookDescription" type="text"></ion-textarea>
-        </ion-item>
-        <ion-item>
-          <ion-label floating>Commentaires</ion-label>
-          <ion-textarea [(ngModel)]="review.reviewComment" formControlName="reviewComment" type="text"></ion-textarea>
-        </ion-item>
-        <ion-item>
-          <ion-label>Date</ion-label>
-          <ion-datetime displayFormat="MMMM YYYY" min="2000" pickerFormat="MMMM YYYY" [(ngModel)]="review.reviewDate"
-            formControlName="reviewDate"></ion-datetime>
-        </ion-item>
-        <ion-item>
-          <ion-range min="0" max="5" pin="true" [(ngModel)]="review.reviewRating" formControlName="reviewRating">
-            <ion-icon range-left name="md-star-outline"></ion-icon>
-            <ion-icon range-right name="md-star"></ion-icon>
-          </ion-range>
-        </ion-item>
+            <ion-label floating>Titre</ion-label>
+            <ion-input [(ngModel)]="review.bookTitle" formControlName="bookTitle" type="text" [class.invalid]="!reviewForm.controls.bookTitle.valid && (reviewForm.controls.bookTitle.dirty || submitAttempt)"></ion-input>
+          </ion-item>
+          <ion-item *ngIf="!reviewForm.controls.bookTitle.valid && (reviewForm.controls.bookTitle.dirty || submitAttempt)">
+            <p>Champ obligatoire - 1024 caractères maximum</p>
+          </ion-item>
+          <ion-item>
+            <ion-label floating>Auteur</ion-label>
+            <ion-input [(ngModel)]="review.bookAuthor" formControlName="bookAuthor" type="text" [class.invalid]="!reviewForm.controls.bookAuthor.valid && (reviewForm.controls.bookAuthor.dirty || submitAttempt)"></ion-input>
+          </ion-item>
+          <ion-item *ngIf="!reviewForm.controls.bookAuthor.valid && (reviewForm.controls.bookAuthor.dirty || submitAttempt)">
+            <p>Champ obligatoire - 256 caractères maximum</p>
+          </ion-item>
+        </div>
+        <div *ngSwitchCase="'details'">
+          <ion-item>
+            <ion-label floating>Description</ion-label>
+            <ion-textarea rows="5" [(ngModel)]="review.bookDescription" formControlName="bookDescription" type="text"></ion-textarea>
+          </ion-item>
+        </div>
+        <div *ngSwitchCase="'comments'">
+          <ion-item>
+            <ion-label floating>Commentaires</ion-label>
+            <ion-textarea rows="5" [(ngModel)]="review.reviewComment" formControlName="reviewComment" type="text"></ion-textarea>
+          </ion-item>
+          <ion-item>
+            <ion-label>Date</ion-label>
+            <ion-datetime displayFormat="MMMM YYYY" min="2000" pickerFormat="MMMM YYYY" [(ngModel)]="review.reviewDate"
+              formControlName="reviewDate"></ion-datetime>
+          </ion-item>
+          <ion-item>
+            <ion-range min="0" max="5" pin="true" [(ngModel)]="review.reviewRating" formControlName="reviewRating">
+              <ion-icon range-left name="md-star-outline"></ion-icon>
+              <ion-icon range-right name="md-star"></ion-icon>
+            </ion-range>
+          </ion-item>
+        </div>
       </form>
     </ion-card-content>
   </ion-card>

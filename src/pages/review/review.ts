@@ -1,7 +1,8 @@
-import { Component } from '@angular/core';
+import { Component, ChangeDetectorRef } from '@angular/core';
 import { IonicPage, ViewController, NavParams, AlertController } from 'ionic-angular';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { BarcodeScanner } from '@ionic-native/barcode-scanner';
+import { SpeechRecognition } from '@ionic-native/speech-recognition/ngx';
 
 import { BookServiceProvider } from '../../providers/book-service';
 import { iReview } from '../../providers/iReview';
@@ -20,13 +21,20 @@ import { iReview } from '../../providers/iReview';
 export class ReviewPage {
 
   review: iReview;
+  reviewPart: string;
 
   reviewForm: FormGroup; // to implement from validation when saving / updating a review
   submitAttempt: boolean = false; // form not submitted yet
 
   isRemoveHidden: boolean = true; // default to "Remove" button hidden
 
-  constructor(public viewCtrl: ViewController, public navParams: NavParams, public alertCtrl: AlertController, public formBuilder: FormBuilder, private barcodeScanner: BarcodeScanner, private bookService: BookServiceProvider) {
+  isSpeechAvailable: boolean = false; // default to speech recognition not available
+  isListening: boolean = false;
+  speechMatches: Array<String> = [];
+
+  constructor(public viewCtrl: ViewController, public navParams: NavParams, public alertCtrl: AlertController, public formBuilder: FormBuilder, 
+    private barcodeScanner: BarcodeScanner, private bookService: BookServiceProvider, private speechRecognition: SpeechRecognition,
+    private changeDetectorRef: ChangeDetectorRef) {
 
     this.reviewForm = formBuilder.group({
       bookTitle: ['', Validators.compose([Validators.maxLength(1024), Validators.required])],
@@ -46,6 +54,8 @@ export class ReviewPage {
       this.review = <iReview>{};
       this.review.reviewDate = (new Date()).toISOString();
     }
+
+    this.reviewPart = "main"; // focus on "main" tab
 
   }
 
@@ -134,7 +144,56 @@ export class ReviewPage {
   }
 
   speech() {
+    if (!this.isSpeechAvailable) {
+      this.speechRecognition.hasPermission().then((hasPermission: boolean) => {
+        if (!hasPermission) {
+          this.speechRecognition.requestPermission()
+          .then(
+            () => {
+              console.log('Granted');
+              this.speechRecognition.isRecognitionAvailable().then((available: boolean) => this.isSpeechAvailable = true);
+            },
+            () => console.log('Denied')
+          )
+        } else {
+          this.speechRecognition.isRecognitionAvailable().then((available: boolean) => this.isSpeechAvailable = true);
+        }
+      });
+    } else {
+      this.startListening();
+    }
+  }
 
+  public startListening(): void {
+    this.isListening = true;
+    this.speechMatches = [];
+
+    let options ={
+      language: 'fr-FR',
+      matches: 1,
+      prompt: '',      // Android only
+      showPopup: false,  // Android only
+      showPartial: false
+    };
+
+    this.speechRecognition.startListening(options)
+    .subscribe(
+      (matches: Array<string>) => {
+        this.isListening = false;
+        this.speechMatches = matches;
+        this.changeDetectorRef.detectChanges(); // forces UI refresh
+      },
+      (onerror) => {
+        this.isListening = false;
+        this.changeDetectorRef.detectChanges(); // forces UI refresh
+        console.log('error:', onerror);
+      }
+    );
+  }
+
+  public stopListening(): void {
+    this.isListening = false;
+    this.speechRecognition.stopListening();
   }
 
   websearch() {

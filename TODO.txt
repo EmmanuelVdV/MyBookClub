@@ -1,4 +1,4 @@
-Bugs :
+﻿Bugs :
 - Affichage du logo sur page Login ==> devrait être OK
 - Affichage "no picture" sur écran Review ==> devrait être OK
 - Bouton "scan" reste en "active" quand on revient sur l'écran
@@ -66,6 +66,8 @@ ionic serve
 
 
 Build sur macos :
+mdp lalala1805
+Terminal => open Worspace\MyBookClub
 sudo rm -dr platforms/ www/ plugins // nettoyage répertoires
 sudo git reset --hard // abandon des précédentes modifs
 sudo git pull
@@ -75,8 +77,9 @@ si mise à jour de packages :
     sudo npm install typescript --unsafe-perm=true
     sudo npm install @types/request --unsafe-perm=true
 sudo ionic cordova build ios -- --buildFlag="-UseModernBuildSystem=0"
+	Build fails with code 1
 Finder => changer droits sur fichiers du répertoire MyBookClub
-Ouvrir MybookClub.xcodeworkspace dans platforms/ios/
+Ouvrir MybookClub.xcworkspace dans platforms/ios/
 Ajouter dans xcode la signature sur le projet : team "Emmanuel Vandevelde"
 Changer dans xcode "Project Settings" > "Legacy Build System"
 Lancer "Run -> iPhone Emmanuel"
