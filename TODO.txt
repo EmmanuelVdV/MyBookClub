@@ -1,10 +1,11 @@
 ﻿Bugs :
 - Affichage du logo sur page Login ==> devrait être OK
 - Affichage "no picture" sur écran Review ==> devrait être OK
+- Affichage des icones des TABs aléatoire => forcer en css (cf. https://forum.ionicframework.com/t/ionic-tutorial-tabs-with-custom-active-inactive-icons/75163)
 - Bouton "scan" reste en "active" quand on revient sur l'écran
 
 A court terme :
-- Changer la page "review" pour décomposer en onglets
+- Changer la page "review" pour décomposer en onglets => partiellement fait (ajuster les hauteurs des encarts identiques + revoir layout)
 - Défiler la liste sur le livre inséré quand ajout
 - Implémenter la capacité à rentrer le clavier
 - Ramener le nombre de pages d'un livre ?
@@ -20,7 +21,7 @@ Ecran Home
 Ecran Review
 - Gérer le grisage / dégrisage bouton "Save"
 - Ajouter bouton "Cancel" avec gestion d'un message de confirmation si changements détectés
-- Ajouter gestion de tabs pour répartir les champs + agrandir "description"
+- Ajouter gestion de tabs pour répartir les champs + agrandir "description" => en cours (cf. plus haut)
 - Implémenter une recherche sur Amazon + affichage de liste de résultats
 - Implémenter la dictée des champs
 

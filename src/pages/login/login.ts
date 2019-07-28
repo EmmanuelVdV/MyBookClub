@@ -1,7 +1,8 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams, LoadingController } from 'ionic-angular';
 import { AuthService } from '../../providers/auth-service';
-import { HomePage } from '../home/home';
+// import { HomePage } from '../home/home';
+import { TabsPage } from '../tabs/tabs';
 import { SignupPage } from '../signup/signup';
 
 /**
@@ -33,7 +34,7 @@ export class LoginPage {
 		this.authService.login(this.email, this.password).then((result) => {
 			this.loading.dismiss();
 			console.log(result);
-			this.navCtrl.setRoot(HomePage);
+			this.navCtrl.setRoot(TabsPage);
 		}, (err) => {
 			this.loading.dismiss();
 			console.log(err);

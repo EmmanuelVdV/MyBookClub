@@ -1,0 +1,5 @@
+<ion-tabs color="primary">
+    <ion-tab [root]="booksRoot" tabIcon="book" [tabBadge]="bookNbr$ | async" tabBadgeStyle="danger"></ion-tab>
+    <ion-tab [root]="wishesRoot" tabIcon="heart"></ion-tab>
+    <ion-tab [root]="accountRoot" tabIcon="settings"></ion-tab>
+</ion-tabs>

@@ -3,12 +3,16 @@ import { AngularFireDatabase, FirebaseListObservable } from 'angularfire2/databa
 import { AuthService } from './auth-service';
 
 import { iReview } from './iReview';
+import { Subject } from 'rxjs/Subject';
 
 @Injectable()
 export class ReviewData {
 
 	reviews: FirebaseListObservable<any[]>;
 	reviewsArray: Array<iReview> = null;
+
+	private reviewNbr = new Subject<number>();
+	reviewNbr$ = this.reviewNbr.asObservable();
 
 	constructor(public db: AngularFireDatabase, public authService: AuthService) { }
 
@@ -27,6 +31,8 @@ export class ReviewData {
 					r.$key = item.key;
 					this.reviewsArray.push(r);
 				});
+
+				this.reviewNbr.next(this.reviewsArray.length); // update number of reviews returned
 
 				resolve(this.reviewsArray);
 			});
@@ -59,6 +65,7 @@ export class ReviewData {
 	pushReview(returnReview: iReview) {
 		const correctedReview = this.correctReview(returnReview);
 		const p = this.reviews.push(correctedReview);
+		this.reviewNbr.next(this.reviewsArray.length); // update number of reviews returned
 		return p;
 	}
 
@@ -81,6 +88,7 @@ export class ReviewData {
 
 	removeReview(returnReview: iReview) {
 		const p = this.reviews.remove(returnReview.$key);
+		this.reviewNbr.next(this.reviewsArray.length); // update number of reviews returned
 		return p;
 	}
 
